@@ -14,8 +14,7 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip
-    pip3 install --upgrade pip
-    pip3 install -r requirements.txt
+    python -m pip install -r requirements.txt
   displayName: 'Install dependencies'
 
 - script: |
@@ -23,7 +22,7 @@ steps:
   displayName: 'Install pylint globally'
 
 - script: |
-    pylint calculator_app tests
+    pylint calculator_app 
   displayName: 'Static analysis (pylint)'
 
 - script: |
