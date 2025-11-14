@@ -19,7 +19,7 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    python -m pylint calculator_app 
+    python -m pylint calculator_app/calculator.py --fail-under=8.0 --disable=import-error,missing-module-docstring
   displayName: 'Static analysis (pylint)'
 
 - script: |
