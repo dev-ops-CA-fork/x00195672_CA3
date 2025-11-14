@@ -54,11 +54,9 @@ The CI pipeline for this project was built using Azure Devops Pipelines. This pi
 As mentioned before, for the duration of this project ill have the repository set to public in order to implement proper protection through branch policies. As for the rules implemented for the main branch, various rules were enabled, like:
 1. Require pull request before merging
 
-2. Require approval set to 1
+2. Require status checks to pass before merging (set to the azure pipeline)
 
-3. Require status checks to pass before merging (set to the azure pipeline)
-
-4. Require branches to be up to date
+3. Require branches to be up to date
 
 These rules prevent direct pushes to the main and make sure that only validated, tested and reviewed code is merged, bellow I leave a snippet of the implemented rules for protection
 
