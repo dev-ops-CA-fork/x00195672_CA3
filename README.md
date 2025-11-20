@@ -71,3 +71,12 @@ When it comes to testing startegy that was implemented using pytest which I used
 ## Troubleshooting Guide
 As for troubleshooting the application, two things I encountered intitialy when working on the applicaiton were that the pipeline was not detecting pylint or pytest, where a message "module not found" occured. This was resolved with the following command "python -m pip install pytest pytest cov pylint". Another issue that I already talked about as well, but needs to be mentioned in this section, is the fact that for the branch protection rule, if it were to be missing, its caused due to the fact that the repository is set to private instead of public. Changing it to public fixes the issue. Last troubleshooting tip would be, if the coverage is failing, make sure that all the functions have a test.
 
+## Environment Setup and Configuration
+
+## Deployment Process
+
+## Security and Performance Testing
+
+## UAT Testing with Selenium
+
+## Pipeline Approval Gates
