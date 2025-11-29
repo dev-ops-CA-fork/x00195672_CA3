@@ -90,7 +90,7 @@ stages:
 
     - script: |
         cd app
-        bandit -r calculator_app web_app.py -f xml -o bandit-report.xml
+        bandit -r calculator_app calculator_web.py -f xml -o bandit-report.xml
         pip-audit -r requirements.txt --output pip-audit-report.json
       displayName: 'Run security tests'
 
@@ -135,7 +135,7 @@ stages:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install locust
-        nohup python web_app.py > flask.log 2>&1 &
+        nohup python calculator_web.py > flask.log 2>&1 &
         echo $! > flask.pid
         sleep 5
         locust -f performance/locust.py --headless -u 10 -r 2 -t 30s -H http://127.0.0.1:1234
@@ -164,7 +164,7 @@ stages:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install selenium webdriver-manager pytest
-        nohup python web_app.py > flask.log 2>&1 &
+        nohup python calculator_web.py > flask.log 2>&1 &
         echo $! > flask.pid
         sleep 5
         export BASE_URL=http://127.0.0.1:1234
