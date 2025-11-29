@@ -82,7 +82,7 @@ stages:
 
     - script: |
         unzip drop/drop.zip -d $(Pipeline.Workspace)/app
-        cd app
+        cd $(Pipeline.Workspace)/app
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install bandit pip-audit
