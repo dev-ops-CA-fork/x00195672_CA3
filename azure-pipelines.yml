@@ -90,10 +90,23 @@ stages:
 
     - script: |
         cd app
+<<<<<<< HEAD
         bandit -r calculator_app calculator_web.py -f xml -o bandit-report.xml
         pip-audit -r requirements.txt --output pip-audit-report.json
       displayName: 'Run security tests'
 
+=======
+        bandit -r calculator_app web_app.py -f xml -o bandit-report.xml
+        pip-audit -r requirements.txt --output pip-audit-report.json
+      displayName: 'Run security tests'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: 'app'
+        ArtifactName: 'security-reports'
+        publishLocation: 'Container'
+
+>>>>>>> 40b8be1b060f2a550a985238cd1fb9fa6f1b9e57
 - stage: Deploy_Test
   displayName: 'Deploy to Test'
   dependsOn: Security_Tests
@@ -110,7 +123,11 @@ stages:
 
           - script: |
               mkdir -p $(Pipeline.Workspace)/test_app
+<<<<<<< HEAD
               unzip $(Pipeline.Workspace)/drop/drop.zip -d $(Pipeline.Workspace)/test_app
+=======
+              unzip drop/drop.zip -d $(Pipeline.Workspace)/test_app
+>>>>>>> 40b8be1b060f2a550a985238cd1fb9fa6f1b9e57
             displayName: 'Extract artefact'
 
 - stage: Performance_Tests
@@ -135,10 +152,17 @@ stages:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install locust
+<<<<<<< HEAD
         nohup python calculator_web.py > flask.log 2>&1 &
         echo $! > flask.pid
         sleep 5
         locust -f performance/locust.py --headless -u 10 -r 2 -t 30s -H http://127.0.0.1:1234
+=======
+        nohup python web_app.py > flask.log 2>&1 &
+        echo $! > flask.pid
+        sleep 5
+        locust -f performance/locustfile.py --headless -u 10 -r 2 -t 30s -H http://127.0.0.1:1234
+>>>>>>> 40b8be1b060f2a550a985238cd1fb9fa6f1b9e57
         kill $(cat flask.pid)
       displayName: 'Run Locust'
 
@@ -164,11 +188,19 @@ stages:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install selenium webdriver-manager pytest
+<<<<<<< HEAD
         nohup python calculator_web.py > flask.log 2>&1 &
         echo $! > flask.pid
         sleep 5
         export BASE_URL=http://127.0.0.1:1234
         pytest selenium_uat --junitxml=uat-results.xml
+=======
+        nohup python web_app.py > flask.log 2>&1 &
+        echo $! > flask.pid
+        sleep 5
+        export BASE_URL=http://127.0.0.1:1234
+        pytest tests_uat --junitxml=uat-results.xml
+>>>>>>> 40b8be1b060f2a550a985238cd1fb9fa6f1b9e57
         kill $(cat flask.pid)
       displayName: 'Run Selenium UAT'
 
@@ -193,5 +225,9 @@ stages:
 
           - script: |
               mkdir -p $(Pipeline.Workspace)/prod_app
+<<<<<<< HEAD
               unzip $(Pipeline.Workspace)/drop/drop.zip -d $(Pipeline.Workspace)/prod_app
+=======
+              unzip drop/drop.zip -d $(Pipeline.Workspace)/prod_app
+>>>>>>> 40b8be1b060f2a550a985238cd1fb9fa6f1b9e57
             displayName: 'Extract artefact'
