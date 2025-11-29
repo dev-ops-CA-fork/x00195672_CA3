@@ -36,7 +36,7 @@ stages:
       displayName: 'Static analysis'
 
     - script: |
-        pytest --cov=calculator_app --cov-report=xml --cov-fail-under=80 --junitxml=test-results.xml
+        pytest tests --cov=calculator_app --cov-report=xml --cov-fail-under=80 --junitxml=test-results.xml
       displayName: 'Unit tests with coverage'
 
     - task: PublishTestResults@2
@@ -174,7 +174,7 @@ stages:
         echo $! > flask.pid
         sleep 5
         export BASE_URL=http://127.0.0.1:1234
-        pytest tests_uat --junitxml=uat-results.xml
+        pytest selenium_uat --junitxml=uat-results.xml
         kill $(cat flask.pid)
       displayName: 'Run Selenium UAT'
 
