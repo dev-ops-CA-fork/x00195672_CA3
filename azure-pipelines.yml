@@ -94,9 +94,14 @@ stages:
         pip-audit -r requirements.txt --output pip-audit-report.json
       displayName: 'Run security tests'
 
+    - script: |
+        ls -la $(System.DefaultWorkingDirectory)/app
+        echo "Directory exists check"
+      displayName: 'Verify app directory exists'
+
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: 'app'
+        PathtoPublish: '$(System.DefaultWorkingDirectory)/app'
         ArtifactName: 'security-reports'
         publishLocation: 'Container'
 
