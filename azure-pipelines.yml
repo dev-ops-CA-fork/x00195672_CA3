@@ -81,7 +81,7 @@ stages:
         versionSpec: $(pythonVersion)
 
     - script: |
-        unzip drop/drop.zip -d app
+        unzip drop/drop.zip -d $(Pipeline.Workspace)/app
         cd app
         python -m pip install --upgrade pip
         pip install -r requirements.txt
@@ -89,7 +89,7 @@ stages:
       displayName: 'Install security tools'
 
     - script: |
-        cd app
+        cd $(Pipeline.Workspace)/app
         bandit -r calculator_app web_app.py -f xml -o bandit-report.xml
         pip-audit -r requirements.txt --output pip-audit-report.json
       displayName: 'Run security tests'
