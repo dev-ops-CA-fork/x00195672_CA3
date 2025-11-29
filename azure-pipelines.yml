@@ -95,12 +95,6 @@ stages:
         pip-audit -r requirements.txt --output pip-audit-report.json
       displayName: 'Run security tests'
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: 'app'
-        ArtifactName: 'security-reports'
-        publishLocation: 'Container'
-
 
 - stage: Deploy_Test
   displayName: 'Deploy to Test'
