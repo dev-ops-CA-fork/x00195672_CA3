@@ -94,7 +94,6 @@ stages:
         pip-audit -r requirements.txt --output pip-audit-report.json
       displayName: 'Run security tests'
 
-
 - stage: Deploy_Test
   displayName: 'Deploy to Test'
   dependsOn: Security_Tests
