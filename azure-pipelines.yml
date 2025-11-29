@@ -110,7 +110,7 @@ stages:
 
           - script: |
               mkdir -p $(Pipeline.Workspace)/test_app
-              unzip drop/drop.zip -d $(Pipeline.Workspace)/test_app
+              unzip $(Pipeline.Workspace)/drop/drop.zip -d $(Pipeline.Workspace)/test_app
             displayName: 'Extract artefact'
 
 - stage: Performance_Tests
@@ -193,5 +193,5 @@ stages:
 
           - script: |
               mkdir -p $(Pipeline.Workspace)/prod_app
-              unzip drop/drop.zip -d $(Pipeline.Workspace)/prod_app
+              unzip $(Pipeline.Workspace)/drop/drop.zip -d $(Pipeline.Workspace)/prod_app
             displayName: 'Extract artefact'
