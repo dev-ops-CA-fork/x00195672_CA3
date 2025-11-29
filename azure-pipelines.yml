@@ -96,7 +96,7 @@ stages:
 
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: '$(System.DefaultWorkingDirectory)/app'
+        PathtoPublish: '$(Pipeline.Workspace)/app'
         ArtifactName: 'security-reports'
         publishLocation: 'Container'
 
