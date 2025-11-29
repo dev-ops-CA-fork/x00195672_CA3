@@ -198,3 +198,10 @@ stages:
       runOnce:
         deploy:
           steps:
+          - download: current
+            artifact: drop
+
+          - script: |
+              mkdir -p $(Pipeline.Workspace)/prod_app
+              unzip drop/drop.zip -d $(Pipeline.Workspace)/prod_app
+            displayName: 'Extract artefact'
