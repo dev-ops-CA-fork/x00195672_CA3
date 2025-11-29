@@ -81,8 +81,17 @@ stages:
         versionSpec: $(pythonVersion)
 
     - script: |
+        echo "Current directory: $(pwd)"
+        echo "Listing before unzip:"
+        ls -la
+        echo "Unzipping to app directory..."
         unzip drop/drop.zip -d app
+        echo "Listing after unzip:"
+        ls -la
+        echo "Contents of app directory:"
+        ls -la app/
         cd app
+        echo "Current directory after cd: $(pwd)"
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install bandit pip-audit
@@ -95,8 +104,18 @@ stages:
       displayName: 'Run security tests'
 
     - script: |
-        ls -la $(System.DefaultWorkingDirectory)/app
-        echo "Directory exists check"
+        echo "Current working directory: $(pwd)"
+        echo "System.DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)"
+        echo "Pipeline.Workspace: $(Pipeline.Workspace)"
+        echo "Checking for app directory..."
+        if [ -d "$(System.DefaultWorkingDirectory)/app" ]; then
+          echo "✓ app directory exists at $(System.DefaultWorkingDirectory)/app"
+          ls -la $(System.DefaultWorkingDirectory)/app
+        else
+          echo "✗ app directory NOT found at $(System.DefaultWorkingDirectory)/app"
+        fi
+        echo "Listing current directory contents:"
+        ls -la
       displayName: 'Verify app directory exists'
 
     - task: PublishBuildArtifacts@1
