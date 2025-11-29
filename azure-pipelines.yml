@@ -138,7 +138,7 @@ stages:
         nohup python web_app.py > flask.log 2>&1 &
         echo $! > flask.pid
         sleep 5
-        locust -f performance/locustfile.py --headless -u 10 -r 2 -t 30s -H http://127.0.0.1:1234
+        locust -f performance/locust.py --headless -u 10 -r 2 -t 30s -H http://127.0.0.1:1234
         kill $(cat flask.pid)
       displayName: 'Run Locust'
 
