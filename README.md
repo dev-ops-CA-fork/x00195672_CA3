@@ -108,9 +108,3 @@ The approval gates implemented through githubs branch protection where the follo
 this stops pull request to be automatically created by the developer and needs to be approved by another person during the pull request assuming the pipeline passes all the tests, along deploy to prod also needs to be approved before being executed.
 
 ![alt text](screenshots/prod.png)
-
-
-
-
-
-testing testing tes test test tesst
